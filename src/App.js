@@ -1,11 +1,12 @@
 import React from 'react';
+import Routes from './routes';
 
-function App() {
-  return (
-    <div>
-      <h2>Desafio - Telzir</h2>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <Routes />
+    );
+  }
 }
 
 export default App;
