@@ -6,11 +6,11 @@ import style from '../styles/Pages/LandingPage.module.css';
 class LandingPage extends React.Component {
   render() {
     return (
-      <main>
-        <header className={ style.landingPageHeader }>
+      <main className={ style.mainLandingPage }>
+        <div className={ style.landingPageHeader }>
           <h2 className={ style.welcomeMessege }>Bem-vindo a Telzir</h2>
           <img className={ style.logo } src={ logo } alt="Telzir Logo" />
-        </header>
+        </div>
         <div className={ style.paragraphs }>
           <p>
             {`Nós da Telzir, nos preocupamos muito 

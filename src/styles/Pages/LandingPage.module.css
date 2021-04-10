@@ -8,9 +8,10 @@ body {
   align-items: center;
 }
 
-main {
+.mainLandingPage {
   display: flex;
   flex-direction: column;
+  padding: 15px;
 }
 
 .landingPageHeader {
@@ -23,12 +24,12 @@ main {
 }
 
 .logo {
-  width: 200px;
+  width: 250px;
   margin: 20px 0 20px 0;
 }
 
 .paragraphs {
-  margin: 20px 0;
+  margin: 0 0 20px 0;
   text-align: center;
 }
 
@@ -53,5 +54,50 @@ main {
 }
 
 .arrowLink span i {
-  color: rgb(94,23,235);
+  color: rgb(0,74,173);
+}
+
+@media (min-width: 600px) {
+  .welcomeMessege {
+    margin: 10px 30px;
+    color: white;
+    font-size: 3rem;
+  }
+
+  .logo {
+    width: 400px;
+    margin: 20px 0 20px 0;
+  }
+
+  .paragraphs {
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+
+  .arrowLink {
+    border-radius: 5px;
+    background-color:rgb(56,182,255);
+    padding: 0 15px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    box-shadow: 0 0 0.3em rgb(0,74,173);
+    margin-top: 30px;
+    transition: 600ms;
+  }
+
+  .arrowLink span i {
+    color: rgb(0,74,173);
+    transition: 600ms;
+  }
+
+  .arrowLink:hover {
+    background-color: rgb(123, 207, 255);
+    transform: scale(1.2);
+  }
+
+  .arrowLink span i:hover {
+    color: rgb(112,0,157);
+  }
 }
