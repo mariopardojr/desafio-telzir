@@ -1,0 +1,36 @@
+.container {
+  background: url(/src/images/background.png);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 10px;
+}
+
+.title {
+  color: rgb(231, 231, 231);
+  margin: 20px;
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  align-self: center;
+}
+
+@media (min-width: 600px) {
+  main {
+    width: 100vw;
+  }
+
+  .container {
+    background: url(/src/images/background.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+  }
+}

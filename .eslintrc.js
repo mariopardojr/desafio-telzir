@@ -8,7 +8,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'trybe-frontend',
-
   ],
   parserOptions: {
     ecmaFeatures: {

@@ -1,69 +1,83 @@
 import React from 'react';
-import fares from '../data';
+import Form from '../components/Form';
+import ResultScreen from '../components/ResultScreen';
+import { withPlan, withoutPlan } from '../helpers/calculation';
+import logo from '../images/logo.png';
+import style from '../styles/Pages/Calculador.module.css';
+
+const INITAL_STATE = {
+  origin: '',
+  destination: '',
+  service: 'FaleMais 30',
+  min: '',
+  shouldRender: false,
+  result: {},
+};
 
 class Calculador extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      origin: '011',
-      destination: '',
-      destinationList: [],
-      originList: [],
-      currentFare: 0,
+      ...INITAL_STATE,
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.updateState = this.updateState.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateState();
+    this.Calculate = this.Calculate.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
+    if (target.name === 'origin') this.setState({ destination: '' });
     this.setState({
       [target.name]: target.value,
     });
   }
 
-  updateState() {
-    const { origin } = this.state;
-    const destinationList = Object.keys(fares).filter((ddd) => ddd !== origin);
-    const originList = ['011', ...destinationList];
+  handleClick() {
     this.setState({
-      destinationList,
-      originList,
-      destination: '016',
+      ...INITAL_STATE,
     });
   }
 
-  renderDestinationDropdown() {
-
-  }
-
-  renderOriginDropdown() {
-    return (
-      <label htmlFor="origin-input">
-        Origem:
-        <select id="origin-input" name="origin" onChange={ this.handleChange }>
-          <option value="011">011</option>
-          {Object.keys(fares)
-            .map((ddd) => <option key={ ddd } value={ ddd }>{ddd}</option>)}
-        </select>
-      </label>
-    );
+  Calculate() {
+    const { origin, destination, service, min } = this.state;
+    if (origin !== '011') {
+      this.setState({
+        result: {
+          withPlan: withPlan(service, min, origin),
+          withoutPlan: withoutPlan(min, origin),
+        },
+        shouldRender: true,
+      });
+    } else if (origin === '011') {
+      this.setState({
+        result: {
+          withPlan: withPlan(service, min, origin, destination),
+          withoutPlan: withoutPlan(min, origin, destination),
+        },
+        shouldRender: true,
+      });
+    }
   }
 
   render() {
+    const { origin, destination, min, service, result, shouldRender } = this.state;
     return (
       <main>
-        <h2>Faça aqui a sua simulação!</h2>
-        <section>
-          <form>
-            {this.renderOriginDropdown()}
-          </form>
-        </section>
+        <div className={ style.container }>
+          <img className={ style.logo } src={ logo } alt="Telzir Logo" />
+          <h2 className={ style.title }>Faça aqui a sua simulação!</h2>
+          {shouldRender ? (<ResultScreen
+            data={ { service, result } }
+            handleClick={ this.handleClick }
+          />) : (
+            <Form
+              handleChange={ this.handleChange }
+              handleClick={ this.Calculate }
+              data={ { origin, destination, min } }
+            />)}
+        </div>
       </main>
     );
   }
