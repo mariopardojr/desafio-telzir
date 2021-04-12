@@ -93,7 +93,7 @@ body {
 
   .arrowLink:hover {
     background-color: rgb(123, 207, 255);
-    transform: scale(1.2);
+    /* transform: scale(1.2); */
   }
 
   .arrowLink span i:hover {

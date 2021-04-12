@@ -1,3 +1,5 @@
+/* Foi utilizado codigos pronto de https://www.theappguruz.com/tag-tools/web/CSSAnimations/ */
+
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
@@ -84,4 +86,4 @@
   -webkit-transform: none;
   transform: none;
   }
-} 
+}

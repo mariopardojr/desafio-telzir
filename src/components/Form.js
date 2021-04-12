@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { fares, services } from '../data';
 import style from '../styles/Components/Form.module.css';
+import animation from '../styles/Animations.module.css';
 
 class Form extends React.Component {
   renderOriginDropdown() {
@@ -41,11 +42,11 @@ class Form extends React.Component {
         Destino
         <select
           className={ style.dropdown }
-          id="destinatio-input"
+          id="destination-input"
           name="destination"
           onChange={ handleChange }
         >
-          <option value="">Escolha um destino</option>
+          <option className={ style.dropdownDefault } value="">Escolha um destino</option>
           {destinationList.map((ddd) => <option key={ ddd } value={ ddd }>{ddd}</option>)}
         </select>
       </label>
@@ -83,6 +84,7 @@ class Form extends React.Component {
       <label htmlFor="min-input">
         Minutos
         <input
+          id="min-input"
           type="number"
           value={ min }
           name="min"
@@ -97,7 +99,7 @@ class Form extends React.Component {
   render() {
     const { handleClick, data: { origin, destination, min } } = this.props;
     return (
-      <form>
+      <form className={ animation.fadeInUp } data-testid="form">
         {this.renderOriginDropdown()}
         {this.renderDestinationDropdown()}
         {this.renderInputMin()}

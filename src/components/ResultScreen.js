@@ -1,20 +1,23 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
+import style from '../styles/Components/ResultScreen.module.css';
 
 class ResultScreen extends React.Component {
   render() {
     const { data: { service, result }, handleClick } = this.props;
     const { withPlan, withoutPlan } = result;
     return (
-      <div>
-        <h2>Tarifas</h2>
-        <div>
+      <div className={ style.container }>
+        <div className={ style.result }>
           <h3>{`Com ${service}`}</h3>
-          <span>{`Essa ligação custará $${parseFloat(withPlan.total).toFixed(2)}`}</span>
+          <p>{`Essa ligação custará $${parseFloat(withPlan.total).toFixed(2)}`}</p>
+          <span>
+            {`Minutos restantes: ${withPlan.residual}`}
+          </span>
         </div>
-        <div>
+        <div className={ style.result }>
           <h3>Sem Plano</h3>
-          <span>{`Essa ligação custará $${parseFloat(withoutPlan).toFixed(2)}`}</span>
+          <p>{`Essa ligação custará $${parseFloat(withoutPlan).toFixed(2)}`}</p>
         </div>
         <button type="button" onClick={ handleClick }>Nova consulta</button>
       </div>

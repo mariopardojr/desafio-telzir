@@ -2,8 +2,8 @@ import React from 'react';
 import Form from '../components/Form';
 import ResultScreen from '../components/ResultScreen';
 import { withPlan, withoutPlan } from '../helpers/calculation';
-import logo from '../images/logo.png';
 import style from '../styles/Pages/Calculador.module.css';
+import Header from '../components/Header';
 
 const INITAL_STATE = {
   origin: '',
@@ -66,8 +66,8 @@ class Calculador extends React.Component {
     return (
       <main>
         <div className={ style.container }>
-          <img className={ style.logo } src={ logo } alt="Telzir Logo" />
-          <h2 className={ style.title }>Faça aqui a sua simulação!</h2>
+          {shouldRender
+            ? <Header>Resultado</Header> : <Header>Faça aqui a sua simulação</Header>}
           {shouldRender ? (<ResultScreen
             data={ { service, result } }
             handleClick={ this.handleClick }
