@@ -22,13 +22,13 @@ describe('Testes da Landing Page', () => {
   });
   test('Verifica há um botão na tela', () => {
     const { getByRole } = renderWithRouter(<LandingPage />);
-    const button = getByRole('link');
-    expect(button).toBeInTheDocument();
+    const arrowButton = getByRole('link');
+    expect(arrowButton).toBeInTheDocument();
   });
   test('Verifica se o botão rediriciona para "/calculadora"', () => {
     const { history, getByRole } = renderWithRouter(<LandingPage />);
-    const button = getByRole('link');
-    userEvent.click(button);
+    const arrowButton = getByRole('link');
+    userEvent.click(arrowButton);
     const { pathname } = history.location;
     expect(pathname).toBe('/calculadora');
   });

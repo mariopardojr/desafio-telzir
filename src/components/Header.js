@@ -1,7 +1,7 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
 import logo from '../images/logo.png';
-import style from '../styles/Pages/Calculador.module.css';
+import style from '../styles/Pages/Calculator.module.css';
 import styleHeader from '../styles/Components/Header.module.css';
 import animation from '../styles/Animations.module.css';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Form from '../components/Form';
 import ResultScreen from '../components/ResultScreen';
 import { withPlan, withoutPlan } from '../helpers/calculation';
-import style from '../styles/Pages/Calculador.module.css';
+import style from '../styles/Pages/Calculator.module.css';
 import Header from '../components/Header';
 
 const INITAL_STATE = {
