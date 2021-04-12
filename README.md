@@ -1,4 +1,4 @@
-# Telzir Calculator
+<h1 align="center">Telzir Calculator<h1>
 <img src="/home/mariopardojr/personal-projects/telzir-website/src/images/logo.png">
 
 ## Descrição do projeto
