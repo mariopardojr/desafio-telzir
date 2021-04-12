@@ -9,6 +9,9 @@ const FOUR_OPTIONS = 4;
 const TEN_OPTIONS = 10;
 const THREE_DROPDOWNS = 3;
 
+const NEW_CONSULTATION = 'Nova consulta';
+const CALCULATE = 'Calcular';
+
 describe('Testes da Calculadora', () => {
   test('Verifica se há um título na página', () => {
     const { getByRole } = renderWithRouter(<Calculator />);
@@ -156,33 +159,76 @@ describe('Testes da Calculadora', () => {
 
   test('Verifica se o resultado do cálculo está correto', () => {
     const { getByRole, getByText, getByLabelText } = renderWithRouter(<Calculator />);
-    let calculateButton = getByRole('button', { name: /calcular/i });
-    let originDropdown = getByLabelText('Origem');
-    let destinationDropdown = getByLabelText('Destino');
-    let inputMin = getByLabelText('Minutos');
-    let planDropdown = getByLabelText('Plano');
 
-    userEvent.selectOptions(originDropdown, [originDropdown.options[1]]);
-    userEvent.selectOptions(destinationDropdown, [destinationDropdown.options[1]]);
-    userEvent.type(inputMin, '20');
-    userEvent.selectOptions(planDropdown, [planDropdown[0]]);
-    userEvent.click(calculateButton);
+    //  Origem: 011, Destino: 016, Min: 20, Plano: FaleMais 30
+    userEvent
+      .selectOptions(getByLabelText('Origem'), [getByLabelText('Origem').options[1]]);
+    userEvent
+      .selectOptions(getByLabelText('Destino'), [getByLabelText('Destino').options[1]]);
+    userEvent.type(getByLabelText('Minutos'), '20');
+    userEvent.selectOptions(getByLabelText('Plano'), [getByLabelText('Plano')[0]]);
+    userEvent.click(getByRole('button', { name: CALCULATE }));
     expect(getByText(/0.00/)).toBeInTheDocument();
     expect(getByText(/38.00/)).toBeInTheDocument();
 
-    const newConsultationButton = getByRole('button', { name: /nova consulta/i });
-    userEvent.click(newConsultationButton);
-    originDropdown = getByLabelText('Origem');
-    userEvent.selectOptions(originDropdown, [originDropdown.options[1]]);
-    destinationDropdown = getByLabelText('Destino');
-    userEvent.selectOptions(destinationDropdown, [destinationDropdown.options[2]]);
-    inputMin = getByLabelText('Minutos');
-    userEvent.type(inputMin, '80');
-    planDropdown = getByLabelText('Plano');
-    userEvent.selectOptions(planDropdown, [planDropdown[1]]);
-    calculateButton = getByRole('button', { name: /calcular/i });
-    userEvent.click(calculateButton);
+    //  Origem: 011, Destino: 017, Min: 80, Plano: FaleMais 60
+    userEvent.click(getByRole('button', { name: NEW_CONSULTATION }));
+    userEvent
+      .selectOptions(getByLabelText('Origem'), [getByLabelText('Origem').options[1]]);
+    userEvent
+      .selectOptions(getByLabelText('Destino'), [getByLabelText('Destino').options[2]]);
+    userEvent.type(getByLabelText('Minutos'), '80');
+    userEvent.selectOptions(getByLabelText('Plano'), [getByLabelText('Plano')[1]]);
+    userEvent.click(getByRole('button', { name: CALCULATE }));
     expect(getByText(/37.40/)).toBeInTheDocument();
     expect(getByText(/136.00/)).toBeInTheDocument();
+
+    //  Origem: 011, Destino: 018, Min: 20, Plano: FaleMais 120
+    userEvent.click(getByRole('button', { name: NEW_CONSULTATION }));
+    userEvent
+      .selectOptions(getByLabelText('Origem'), [getByLabelText('Origem').options[1]]);
+    userEvent
+      .selectOptions(getByLabelText('Destino'), [getByLabelText('Destino').options[3]]);
+    userEvent.type(getByLabelText('Minutos'), '140');
+    userEvent.selectOptions(getByLabelText('Plano'), [getByLabelText('Plano')[2]]);
+    userEvent.click(getByRole('button', { name: CALCULATE }));
+    expect(getByText(/19.80/)).toBeInTheDocument();
+    expect(getByText(/126.00/)).toBeInTheDocument();
+
+    //  Origem: 016, Destino: 011, Min: 45, Plano: FaleMais 30
+    userEvent.click(getByRole('button', { name: NEW_CONSULTATION }));
+    userEvent
+      .selectOptions(getByLabelText('Origem'), [getByLabelText('Origem').options[2]]);
+    userEvent
+      .selectOptions(getByLabelText('Destino'), [getByLabelText('Destino').options[1]]);
+    userEvent.type(getByLabelText('Minutos'), '45');
+    userEvent.selectOptions(getByLabelText('Plano'), [getByLabelText('Plano')[0]]);
+    userEvent.click(getByRole('button', { name: CALCULATE }));
+    expect(getByText(/47.85/)).toBeInTheDocument();
+    expect(getByText(/130.50/)).toBeInTheDocument();
+
+    //  Origem: 017, Destino: 011, Min: 87, Plano: FaleMais 60
+    userEvent.click(getByRole('button', { name: NEW_CONSULTATION }));
+    userEvent
+      .selectOptions(getByLabelText('Origem'), [getByLabelText('Origem').options[3]]);
+    userEvent
+      .selectOptions(getByLabelText('Destino'), [getByLabelText('Destino').options[1]]);
+    userEvent.type(getByLabelText('Minutos'), '87');
+    userEvent.selectOptions(getByLabelText('Plano'), [getByLabelText('Plano')[1]]);
+    userEvent.click(getByRole('button', { name: CALCULATE }));
+    expect(getByText(/80.19/)).toBeInTheDocument();
+    expect(getByText(/234.90/)).toBeInTheDocument();
+
+    //  Origem: 018, Destino: 011, Min: 32, Plano: FaleMais 120
+    userEvent.click(getByRole('button', { name: NEW_CONSULTATION }));
+    userEvent
+      .selectOptions(getByLabelText('Origem'), [getByLabelText('Origem').options[4]]);
+    userEvent
+      .selectOptions(getByLabelText('Destino'), [getByLabelText('Destino').options[1]]);
+    userEvent.type(getByLabelText('Minutos'), '32');
+    userEvent.selectOptions(getByLabelText('Plano'), [getByLabelText('Plano')[2]]);
+    userEvent.click(getByRole('button', { name: CALCULATE }));
+    expect(getByText(/0.00/)).toBeInTheDocument();
+    expect(getByText(/60.80/)).toBeInTheDocument();
   });
 });
