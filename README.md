@@ -1,9 +1,17 @@
 <h1 align="center">Telzir Calculator 📞📟📱<h1>
-<h1><a href="https://imgur.com/3VZvi6C"><img src="https://i.imgur.com/3VZvi6Cs.png" title="source: imgur.com" /></a><h1>
 
 ## Descrição do projeto
-<p>A aplicação consiste em uma espécie de calculadora que diz ao usuário quanto ele pagará por uma ligação com duração definida pelo próprio usuário</p>
+A aplicação consiste em uma espécie de calculadora que diz ao usuário quanto ele pagará por uma ligação com duração definida pelo próprio usuário.
 
 
 ## Testes
-<p><p>
+
+### Pré-requistos para rodar os testes
+
+  * Instalar as seguintes bibliotecas:
+    * JEST - `npm install --save-dev jest`
+    * RTL - React Testing Library - `npm install --save-dev @testing-library/react`
+
+### Como rodar os testes
+
+Existem dois arquivos de testes na pasta `tests`. Para rodá-los basta utilizar o comando `npm test` e depois pressionar a tecla "a" caso queria executar todos os arquivos de uma vez. Caso queria executar um por vez acrescente o nome do arquivo de teste. Ex: `npm test arquivo-de-testes.test.js`.
