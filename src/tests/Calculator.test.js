@@ -1,7 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import renderWithRouter from '../helpers/renderWithRouter';
-import Calculador from '../pages/Calculator';
 import Calculator from '../pages/Calculator';
 
 const TWO_OPTIONS = 2;
@@ -157,31 +156,33 @@ describe('Testes da Calculadora', () => {
 
   test('Verifica se o resultado do cálculo está correto', () => {
     const { getByRole, getByText, getByLabelText } = renderWithRouter(<Calculator />);
-    const calculateButton = getByRole('button');
-    const originDropdown = getByLabelText('Origem');
-    const destinationDropdown = getByLabelText('Destino');
-    const planDropdown = getByLabelText('Plano');
-    const inputMin = getByLabelText('Minutos');
+    let calculateButton = getByRole('button', { name: /calcular/i });
+    let originDropdown = getByLabelText('Origem');
+    let destinationDropdown = getByLabelText('Destino');
+    let inputMin = getByLabelText('Minutos');
+    let planDropdown = getByLabelText('Plano');
 
     userEvent.selectOptions(originDropdown, [originDropdown.options[1]]);
     userEvent.selectOptions(destinationDropdown, [destinationDropdown.options[1]]);
     userEvent.type(inputMin, '20');
     userEvent.selectOptions(planDropdown, [planDropdown[0]]);
     userEvent.click(calculateButton);
-    const newConsultationButton = getByRole('button', { name: /nova consulta/i });
-    let resultWithPlan = getByText(/0.00/);
-    let resultWithoutPlan = getByText(/38.00/);
-    expect(resultWithPlan).toBeInTheDocument();
-    expect(resultWithoutPlan).toBeInTheDocument();
+    expect(getByText(/0.00/)).toBeInTheDocument();
+    expect(getByText(/38.00/)).toBeInTheDocument();
 
+    const newConsultationButton = getByRole('button', { name: /nova consulta/i });
     userEvent.click(newConsultationButton);
+    originDropdown = getByLabelText('Origem');
     userEvent.selectOptions(originDropdown, [originDropdown.options[1]]);
+    destinationDropdown = getByLabelText('Destino');
     userEvent.selectOptions(destinationDropdown, [destinationDropdown.options[2]]);
+    inputMin = getByLabelText('Minutos');
     userEvent.type(inputMin, '80');
+    planDropdown = getByLabelText('Plano');
     userEvent.selectOptions(planDropdown, [planDropdown[1]]);
+    calculateButton = getByRole('button', { name: /calcular/i });
     userEvent.click(calculateButton);
-    resultWithPlan = getByText(/41.80/);
-    resultWithoutPlan = getByText(/152.00/);
-    expect(resultWithPlan).toBeInTheDocument();
+    expect(getByText(/37.40/)).toBeInTheDocument();
+    expect(getByText(/136.00/)).toBeInTheDocument();
   });
 });
