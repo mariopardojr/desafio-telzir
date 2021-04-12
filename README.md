@@ -1,7 +1,7 @@
 <h1 align="center">Telzir Calculator 📞📟📱<h1>
 
 ## Descrição do projeto
-A aplicação consiste em uma espécie de calculadora que diz ao usuário quanto ele pagará por uma ligação com duração definida pelo próprio usuário.
+O projeto é uma aplicação `React` que consiste em ser uma espécie de calculadora que diz ao usuário quanto ele pagará por uma ligação com duração definida pelo próprio usuário.
 
 
 ## Testes
