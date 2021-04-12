@@ -9,6 +9,7 @@ O projeto é uma aplicação `React` que consiste em ser uma espécie de calcula
 ### Pré-requistos para rodar os testes
 
   * Instalar as seguintes bibliotecas:
+  
     * JEST - `npm install --save-dev jest`
     * RTL - React Testing Library - `npm install --save-dev @testing-library/react`
 
